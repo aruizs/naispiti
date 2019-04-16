@@ -1,0 +1,39 @@
+language: cpp
+dist: xenial
+compiler:
+  - gcc
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-6
+      - python3
+      - python3-pip      
+      - python3-venv
+
+install:
+  - "[ $CXX = g++ ] && export CXX=g++-6 || true"
+# Install conan  
+  - python3 -m pip install --user virtualenv
+  - python3 -m venv conan
+  - source conan/bin/activate
+  - pip install conan
+# Automatic detection of your arch, compiler, etc.
+  - conan user
+
+before_script:
+  # create a build folder for the out-of-source build
+  - mkdir build
+  # switch to build directory
+  - cd build
+  # run cmake; here we assume that the project's
+  # top-level CMakeLists.txt is located at '..'
+  - cmake -DCMAKE_BUILD_TYPE=Debug ..
+
+script:
+  # once CMake has done its job we just build using make as usual
+  - make
+  # if the project uses ctest we can run the tests like this
+  - make test
