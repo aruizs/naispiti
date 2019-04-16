@@ -27,6 +27,10 @@ install:
 # Automatic detection of your arch, compiler, etc.
   - conan user
 
+env:
+- BUILD_TYPE=Debug
+- BUILD_TYPE=Release
+
 before_script:
   # create a build folder for the out-of-source build
   - mkdir build
@@ -34,7 +38,7 @@ before_script:
   - cd build
   # run cmake; here we assume that the project's
   # top-level CMakeLists.txt is located at '..'
-  - cmake -DCMAKE_BUILD_TYPE=Debug ..
+  - cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE ..
 
 script:
   # once CMake has done its job we just build using make as usual
