@@ -2,19 +2,23 @@ language: cpp
 dist: xenial
 compiler:
   - gcc
+  - clang
 
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
+      - llvm-toolchain-trusty-7
     packages:
-      - g++-6
+      - g++-7
+      - clang-7
       - python3
       - python3-pip      
       - python3-venv
 
 install:
-  - "[ $CXX = g++ ] && export CXX=g++-6 || true"
+  - "[ $CXX = g++ ] && export CXX=g++-7 || true"
+  - "[ $CXX = clang++ ] && export CXX=clang++-7 || true"
 # Install conan  
   - python3 -m pip install --user virtualenv
   - python3 -m venv conan
