@@ -3,5 +3,5 @@
 
 
 TEST_CASE("Complex SUM") {
-	REQUIRE(8 == complex_sum(6, 2));
+	REQUIRE(8 == complex_sum(7, 2));
 }
