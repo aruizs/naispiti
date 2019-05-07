@@ -2,7 +2,8 @@ language: cpp
 dist: xenial
 compiler:
   - gcc
-  - clang
+# Unable Clang until Conan.io support version 7.1
+#  - clang
 
 addons:
   apt:
@@ -18,7 +19,8 @@ addons:
 
 install:
   - "[ $CXX = g++ ] && export CXX=g++-7 || true"
-  - "[ $CXX = clang++ ] && export CXX=clang++-7 || true"
+# Unable Clang until Conan.io support version 7.1
+#  - "[ $CXX = clang++ ] && export CXX=clang++-7 || true"
 # Install conan  
   - python3 -m pip install --user virtualenv
   - python3 -m venv conan
